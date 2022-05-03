@@ -1,3 +1,4 @@
+from re import template
 import dash
 from dash import html, dcc
 from dash.dependencies import Input, Output
@@ -7,9 +8,10 @@ import numpy as np
 
 import plotly.graph_objs as go
 import plotly.express as px
+import dash_bootstrap_components as dbc
 
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 server = app.server
 
 # ========== Data Preparation ========== #
@@ -55,9 +57,9 @@ def render_graphs(city_list, main_variable):
     pay_fig = px.bar(df_payment, y="Payment", x=main_variable,orientation="h")
     income_per_product_fig = px.bar(df_product, x="Product line", y="Product line", color="City",orientation="h",barmode="group")
 
-    city_fig.update_layout(margin=dict(l=0, r=0, t=20, b=0),height=200)
-    pay_fig.update_layout(margin=dict(l=0, r=0, t=20, b=0),height=200)
-    income_per_product_fig.update_layout(margin=dict(l=0, r=0, t=20, b=0),height=500)
+    city_fig.update_layout(margin=dict(l=0, r=0, t=20, b=0),height=200,template="plotly_dark")
+    pay_fig.update_layout(margin=dict(l=0, r=0, t=20, b=0),height=200,template="plotly_dark")
+    income_per_product_fig.update_layout(margin=dict(l=0, r=0, t=20, b=0),height=500,template="plotly_dark")
 
 
     return city_fig,pay_fig,income_per_product_fig
