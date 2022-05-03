@@ -110,4 +110,5 @@ def render_graphs(city_list, main_variable):
 
 # ========== Run Server ========== #
 if __name__ == '__main__':
-    app.run_server(port=8050, debug=True)
+    app.run_server(debug='False')
+    #app.run_server(port=8050, debug=True)
